@@ -46,4 +46,40 @@ describe('<Quiz />', () => {
             cy.get('.alert').should('have.text', '12')
         })
     })
+
+    it('verifies the correctness of the answer', () => {
+        cy.intercept('GET','/api/questions/random', {
+            fixture: 'questions.json'
+        }).as('fetchQuestion')
+
+        cy.mount(<Quiz />)
+        cy.contains('Start Quiz').click()
+
+        cy.wait('@fetchQuestion')
+
+        cy.get('.d-flex').eq(1).within(() => {
+            cy.get('button').click()
+        })
+
+        cy.get('h2').should('have.text', 'Quiz Completed')
+        cy.get('.alert').should('have.text', 'Your score: 1/1')
+        cy.get('button').should('have.text', 'Take New Quiz')
+    })
+
+    it('starts the quiz again when "Take New Quiz" is selected', () => {
+        cy.intercept('GET','/api/questions/random', {
+            fixture: 'questions.json'
+        }).as('fetchQuestion')
+
+        cy.mount(<Quiz />)
+        cy.contains('Start Quiz').click()
+
+        cy.wait('@fetchQuestion')
+
+        cy.get('.d-flex').eq(1).within(() => {
+            cy.get('button').click()
+        })
+        cy.contains('Take New Quiz').click()
+        cy.wait('@fetchQuestion').its('response.statusCode').should('eq', 200);
+    })
 });
