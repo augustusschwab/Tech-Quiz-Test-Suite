@@ -47,7 +47,7 @@ const Quiz = () => {
   if (!quizStarted) {
     return (
       <div className="p-4 text-center">
-        <button className="btn btn-primary d-inline-block mx-auto" onClick={handleStartQuiz}>
+        <button className="btn btn-primary d-inline-block mx-auto" onClick={handleStartQuiz} data-cy="start-button">
           Start Quiz
         </button>
       </div>
@@ -58,10 +58,10 @@ const Quiz = () => {
     return (
       <div className="card p-4 text-center">
         <h2>Quiz Completed</h2>
-        <div className="alert alert-success">
+        <div data-cy="score" className="alert alert-success">
           Your score: {score}/{questions.length}
         </div>
-        <button className="btn btn-primary d-inline-block mx-auto" onClick={handleStartQuiz}>
+        <button data-cy="restart" className="btn btn-primary d-inline-block mx-auto" onClick={handleStartQuiz}>
           Take New Quiz
         </button>
       </div>
@@ -72,7 +72,7 @@ const Quiz = () => {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
         <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
+          <span className="visually-hidden" data-cy="load-screen">Loading...</span>
         </div>
       </div>
     );
@@ -85,9 +85,9 @@ const Quiz = () => {
       <h2>{currentQuestion.question}</h2>
       <div className="mt-3">
       {currentQuestion.answers.map((answer, index) => (
-        <div key={index} className="d-flex align-items-center mb-2">
-          <button className="btn btn-primary" onClick={() => handleAnswerClick(answer.isCorrect)}>{index + 1}</button>
-          <div className="alert alert-secondary mb-0 ms-2 flex-grow-1">{answer.text}</div>
+        <div key={index} className="d-flex align-items-center mb-2" data-cy="answers">
+          <button data-cy="answer-selector" className="btn btn-primary" onClick={() => handleAnswerClick(answer.isCorrect)}>{index + 1}</button>
+          <div data-cy="answer" className="alert alert-secondary mb-0 ms-2 flex-grow-1">{answer.text}</div>
         </div>
       ))}
       </div>
