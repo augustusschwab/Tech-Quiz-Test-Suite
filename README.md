@@ -17,7 +17,7 @@ To install, clone, or download the project folder, run `npm install` from the ro
 ## Usage
 Once a root folder is set up on the user's machine and the dependencies are installed, start by initializing the MongoDB database. Then run `npm run start:dev`, this will start the client and server. Once the client and server are running, open a new terminal window and run `npm run cypress`, this will launch the cypress UI, select desired test from the cypress UI. A walkthrough video is shown below.
 
-  [Walkthrough Video](https://drive.google.com/file/d/1KDeDVGvpOmZN9cc3Rfup-cOZvzEptlTF/view?usp=sharing)
+  [Walkthrough Video](https://drive.google.com/file/d/1P0aI5z-qm1wgApxo-S3Po3IhtiZnFIx_/view?usp=sharing)
 
 ## Contributing
   To contribute to this repository, please contact the repository owner via the email in the questions section.
